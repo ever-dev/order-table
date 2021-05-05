@@ -1,44 +1,26 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
-## Available Scripts
+### Approaches
+- Redux Toolkit
+Redux Toolkit is official recommended approach for writing Redux Logic according to [Redux documentation](https://redux.js.org/introduction/getting-started#redux-toolkit).
 
-In the project directory, you can run:
+- Object Oriented Programming
+Defined types and classes as its implementation and turned the API response to objects so that it can be handled by objects, rather than just using static typing.
 
-### `npm start`
+- Case conversion
+API response uses snake_case which is commonly used for most backend languages, and it is best practice to use camelCase in frontend.
+To keep consistency, I did case conversion while mapping the response into objects
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Advanced Table component
+Rather than making a static component, I made a customizable table components which will show table depends on the data and columns given.
+Inside columns, we have 3 basic options but we can add more if we need.
+  - caption: This is string for header
+  - getter: function to get actual value, I would use `string | function` type which is the key or getter function, but for now, I just stick to a getter function
+  - formatter: function to format value, if this is not given, it will display the raw data returned by getter function
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+- Selection
+It just clears all selection when we move to another pages, or change the page size, etc.
+We may bring a better user experience at later.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Pagination
+When we change the page size, it calculates the new page number which will show the first record on its page.
